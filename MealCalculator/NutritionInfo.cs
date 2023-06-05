@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MealCalculator
 {
+    [Serializable]
     public class NutritionInfo
     {
         private string Name;
