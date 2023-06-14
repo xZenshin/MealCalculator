@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 
 namespace MealCalculator
 {
@@ -34,7 +36,9 @@ namespace MealCalculator
         {
             try
             {
-                WriteToBinaryFile("testing", nutritionDict);
+                string fileName = "NutrionInfo.json"; 
+                string jsonString = JsonSerializer.Serialize(fileName);
+                File.WriteAllText(fileName, jsonString);
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
@@ -45,50 +49,14 @@ namespace MealCalculator
         {
             try
             {
-                Dictionary<string, NutritionInfo> temp = ReadFromBinaryFile<Dictionary<string, NutritionInfo>>("NutritionInfo");
-                this.nutritionDict = temp;
+                string fileName = "NutrionInfo.json";
+                string jsonString = File.ReadAllText(fileName);
+                var weatherForecast = JsonSerializer.Deserialize<Dictionary<string, NutritionInfo>>(jsonString)!;
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
   
-        }
-        public void Save2()
-        {
-            string json = JsonConvert.SerializeObject(nutritionDict, Formatting.Indented);
-            Console.WriteLine(json);
-
-            using (StreamWriter writer = new StreamWriter("testingg"))
-            {
-                writer.WriteLine(json);
-            }
-        }
-
-        public void Load2()
-        {
-            string readText = File.ReadAllText("testingg");
-            Console.WriteLine(readText);
-
-            Dictionary<string, string> htmlAttributes = JsonConvert.DeserializeObject<Dictionary<string, string>>(readText);
-
-        }
-
-        private static void WriteToBinaryFile<T>(string filePath, T objectToWrite, bool append = false)
-        {
-            using (Stream stream = File.Open(filePath, append ? FileMode.Append : FileMode.Create))
-            {
-                var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                binaryFormatter.Serialize(stream, objectToWrite);
-            }
-        }
-
-        private static T ReadFromBinaryFile<T>(string filePath)
-        {
-            using (Stream stream = File.Open(filePath, FileMode.Open))
-            {
-                var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                return (T)binaryFormatter.Deserialize(stream);
-            }
         }
     }
 }

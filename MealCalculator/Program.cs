@@ -19,11 +19,11 @@ namespace MealCalculator
             calc.addNutritionItem(N2);
 
             //Console.WriteLine("Start Save");
-            calc.Save2();
+            calc.Save();
             //Console.WriteLine("Save Complete");
 
             Console.WriteLine("Start Load");
-            calc.Load2();
+            calc.Load();
             Console.WriteLine("Load Complete");
             Console.WriteLine("Printing All");
 
