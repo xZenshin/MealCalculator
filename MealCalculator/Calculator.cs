@@ -13,28 +13,56 @@ namespace MealCalculator
     [Serializable]
     public class Calculator
     {
-        private Dictionary<string, NutritionInfo> nutritionDict;
+        private NutritionDB DB;
         private XmlSerializer serializer;
 
         public Calculator() 
         { 
-            nutritionDict = new Dictionary<string, NutritionInfo>();
-            serializer = new XmlSerializer(typeof(item[]), new XmlRootAttribute() { ElementName = "items" });
+            DB = new NutritionDB();
+            //serializer = new XmlSerializer(typeof(item[]), new XmlRootAttribute() { ElementName = "items" });
             //this.Load();
         }
 
-        public void PrintAll()
+        public void printAll()
         {
-            Console.WriteLine("Printing All: ");
-            foreach (var item in nutritionDict)
-            {
-                Console.WriteLine($"{item.Key}: {item.Value}");
-            }
+            DB.printAll();
         }
-        public void addNutritionItem(NutritionInfo n)
+
+
+        public void calculateMeal(Meal m)
         {
-            nutritionDict.Add(n.getName(), n);
+            var i = m.getIngredients();
+            
         }
+
+        private (double p, double f, double c) nutritionPerServing(Ingredient i) 
+        {
+            var nutInfo = DB.getInfoFromName(i.getName());
+            var grams = i.getGrams();
+            
+            var p = (nutInfo.getProtein()) / (Convert.ToDouble(grams));
+            var f = (nutInfo.getFat()) / (Convert.ToDouble(grams));
+            var c = (nutInfo.getProtein()) / (Convert.ToDouble(grams));
+
+            return (p, f, c);
+        }
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public void Save()
         {
