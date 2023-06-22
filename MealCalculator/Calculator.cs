@@ -14,13 +14,9 @@ namespace MealCalculator
     public class Calculator
     {
         private NutritionDB DB;
-        private XmlSerializer serializer;
-
         public Calculator() 
         { 
             DB = new NutritionDB();
-            //serializer = new XmlSerializer(typeof(item[]), new XmlRootAttribute() { ElementName = "items" });
-            //this.Load();
         }
 
         public void printAll()
@@ -29,10 +25,45 @@ namespace MealCalculator
         }
 
 
-        public void calculateMeal(Meal m)
+        public void calculateIngredient(Ingredient ingredient)
         {
-            var i = m.getIngredients();
-            
+            var (p,f,c) = nutritionPerServing(ingredient);
+            printNutrition(p,f,c);
+        }
+        public void calculateMeals(Meal[] m)
+        {
+            double[] totalNutrition = new double[3];
+            foreach (Meal i in m)
+            {
+                var (p,f,c) = calculateMeal(i);
+                totalNutrition[0] = totalNutrition[0] + p;
+                totalNutrition[1] = totalNutrition[1] + f;
+                totalNutrition[2] = totalNutrition[2] + c;
+            }
+            printNutrition(totalNutrition[0], totalNutrition[1], totalNutrition[2]);
+        }
+        public (double p, double f, double c) calculateMeal(Meal m, bool print = false)
+        {
+            var Ingredients = m.getIngredients();
+            double[] totalNutrition = new double[3];
+
+            foreach (Ingredient i in Ingredients)
+            {
+                var (p,f,c) = nutritionPerServing(i);
+                totalNutrition[0] = totalNutrition[0] + p;
+                totalNutrition[1] = totalNutrition[1] + f;
+                totalNutrition[2] = totalNutrition[2] + c;
+            }
+            if(print)
+            {
+                printNutrition(totalNutrition[0], totalNutrition[1], totalNutrition[2]);
+            }
+            return (totalNutrition[0], totalNutrition[1], totalNutrition[2]);
+        }
+
+        private double calculateCalories(double p, double f, double c) 
+        {
+            return ((p * 4) + (f * 9) + (c * 9));
         }
 
         private (double p, double f, double c) nutritionPerServing(Ingredient i) 
@@ -40,63 +71,20 @@ namespace MealCalculator
             var nutInfo = DB.getInfoFromName(i.getName());
             var grams = i.getGrams();
             
-            var p = (nutInfo.getProtein()) / (Convert.ToDouble(grams));
-            var f = (nutInfo.getFat()) / (Convert.ToDouble(grams));
-            var c = (nutInfo.getProtein()) / (Convert.ToDouble(grams));
+            var p = (nutInfo.getProtein()) * (Convert.ToDouble(grams)/100);
+            var f = (nutInfo.getFat()) * (Convert.ToDouble(grams)/100);
+            var c = (nutInfo.getCarbs()) * (Convert.ToDouble(grams)/100);
 
             return (p, f, c);
         }
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public void Save()
+        private void printNutrition(double p, double f, double c)
         {
-            try
-            {
-                //string fileName = "NutrionInfo.json"; 
-                //string jsonString = JsonSerializer.Serialize(nutritionDict);
-                //File.WriteAllText(fileName, jsonString);
-                //serializer.Serialize(stream, nutritionDict.Select(kv=>new item(){id = kv.Key,value=kv.Value}).ToArray() )
-            } catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            var calories = calculateCalories(p, f, c);
+            Console.WriteLine("Total Calories = " + calories.ToString());            
+            Console.WriteLine("Total Protein = " + p.ToString());            
+            Console.WriteLine("Total Fat = " + f.ToString());            
+            Console.WriteLine("Total Carbs = " + c.ToString());
         }
-
-        public void Load()
-        {
-            try
-            {
-                string fileName = "NutrionInfo.json";
-                string jsonString = File.ReadAllText(fileName);
-                var weatherForecast = JsonSerializer.Deserialize<Dictionary<string, NutritionInfo>>(jsonString)!;
-            } catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-  
-        }
-    }
-    public class item   
-    {
-        [XmlAttribute]
-        public string name;
-        [XmlAttribute]
-        public NutritionInfo value;
     }
 }

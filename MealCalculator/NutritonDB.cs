@@ -23,6 +23,11 @@ namespace MealCalculator
             addNutritionItem(new NutritionInfo("Pasta", 12.0, 1.2, 71.0));
             addNutritionItem(new NutritionInfo("Chopped Tomatoes", 1.2, 0.2, 3.9));
             addNutritionItem(new NutritionInfo("Broccoli", 2.4, 0.4, 7.2));
+            addNutritionItem(new NutritionInfo("Cottage Cheese", 12.0, 1.5, 2.0));
+            addNutritionItem(new NutritionInfo("Egg", 12.0, 9.5, 1.2));
+            addNutritionItem(new NutritionInfo("Milk", 3.5, 0.4, 4.7));
+            addNutritionItem(new NutritionInfo("Gouda Skiveost", 24.0, 28.0, 0.5));
+            addNutritionItem(new NutritionInfo("Chicken Slices", 21.0, 1.5, 2.0));
         }
 
         public void addNutritionItem(NutritionInfo n)
@@ -46,7 +51,7 @@ namespace MealCalculator
             } 
             catch(Exception e)
             {
-                throw new Exception("Ingredient not found");
+                throw new Exception("Ingredient not found: " + name);
             }
         }
     }
