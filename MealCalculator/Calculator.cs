@@ -63,7 +63,7 @@ namespace MealCalculator
 
         private double calculateCalories(double p, double f, double c) 
         {
-            return ((p * 4) + (f * 9) + (c * 9));
+            return ((p * 4) + (f * 9) + (c * 4));
         }
 
         private (double p, double f, double c) nutritionPerServing(Ingredient i) 
