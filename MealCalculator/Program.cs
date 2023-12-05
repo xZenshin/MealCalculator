@@ -113,7 +113,7 @@ namespace MealCalculator
             var skyr = new Ingredient("Skyr Naturel Føtex", 200);
             Ingredient[] ingArr4 = {ing9,ing10, strawberry, skyr};
 
-            var ing11 = new Ingredient("Peanut Butter Coop", 50);
+            var ing11 = new Ingredient("Peanut Butter Coop", 65);
             var ing12 = new Ingredient("Whole Grain Bread", 100);
             var strawberryJam = new Ingredient("Strawberry Jam", 30);
             Ingredient[] ingArr5 = {ing11,ing12, strawberryJam };
