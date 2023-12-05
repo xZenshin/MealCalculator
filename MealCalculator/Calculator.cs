@@ -82,10 +82,18 @@ namespace MealCalculator
         private void printNutrition(double p, double f, double c)
         {
             var calories = calculateCalories(p, f, c);
+  
             Console.WriteLine("Total Calories = " + calories.ToString());            
             Console.WriteLine("Total Protein = " + p.ToString());            
             Console.WriteLine("Total Fat = " + f.ToString());            
             Console.WriteLine("Total Carbs = " + c.ToString());
+            if (calories > 1500)
+            {
+                Console.WriteLine($"Percent Protein {((p*4) / calories) * 100}");
+                Console.WriteLine($"Percent Fat {((f * 9) / calories) * 100}");
+                Console.WriteLine($"Percent Carbs {((c * 4) / calories) * 100}");
+            }
+            Console.WriteLine();
         }
     }
 }

@@ -31,6 +31,10 @@ namespace MealCalculator
             addNutritionItem(new NutritionInfo("Raisins", 3.0, 0.7, 77.0));
             addNutritionItem(new NutritionInfo("Peanut Butter", 24.5, 48.3, 16.9));
             addNutritionItem(new NutritionInfo("Whole Grain Bread", 8.0, 3.0, 41.0));
+            addNutritionItem(new NutritionInfo("Skyr Naturel Føtex", 10, 0.2, 3.5));
+            addNutritionItem(new NutritionInfo("Strawberry Jam", 0, 0, 43));
+            addNutritionItem(new NutritionInfo("Peanut Butter Coop", 22, 55, 12));
+            addNutritionItem(new NutritionInfo("Frozen Strawberry", 0, 0, 8));
         }
 
         public void addNutritionItem(NutritionInfo n)

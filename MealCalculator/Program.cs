@@ -103,17 +103,20 @@ namespace MealCalculator
             //Kylling og ris
             var ing6 = new Ingredient("Chicken Breast", 250);
             var ing7 = new Ingredient("Jasmine Rice", 150);
-            var ing8 = new Ingredient("Broccoli", 100);
+            var ing8 = new Ingredient("Broccoli", 70);
             Ingredient[] ingArr3 = {ing6,ing7,ing8};
 
             //Proteinshake
             var ing9 = new Ingredient("Protein Powder", 35);
-            var ing10 = new Ingredient("Milk", 250);
-            Ingredient[] ingArr4 = {ing9,ing10};
+            var ing10 = new Ingredient("Milk", 200);
+            var strawberry = new Ingredient("Frozen Strawberry", 100);
+            var skyr = new Ingredient("Skyr Naturel Føtex", 200);
+            Ingredient[] ingArr4 = {ing9,ing10, strawberry, skyr};
 
-            var ing11 = new Ingredient("Peanut Butter", 50);
-            var ing12 = new Ingredient("Whole Grain Bread", 82);
-            Ingredient[] ingArr5 = {ing11,ing12};
+            var ing11 = new Ingredient("Peanut Butter Coop", 50);
+            var ing12 = new Ingredient("Whole Grain Bread", 100);
+            var strawberryJam = new Ingredient("Strawberry Jam", 30);
+            Ingredient[] ingArr5 = {ing11,ing12, strawberryJam };
 
             var meal1 = new Meal(MealType.Breakfast, "Havregryn med mælk", ingArr);
             var meal2 = new Meal(MealType.Lunch, "Sandwich", ingArr2);
