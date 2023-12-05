@@ -35,7 +35,7 @@ namespace MealCalculator
             double[] totalNutrition = new double[3];
             foreach (Meal i in m)
             {
-                var (p,f,c) = calculateMeal(i);
+                var (p,f,c) = calculateMeal(i, true);
                 totalNutrition[0] = totalNutrition[0] + p;
                 totalNutrition[1] = totalNutrition[1] + f;
                 totalNutrition[2] = totalNutrition[2] + c;
@@ -56,6 +56,7 @@ namespace MealCalculator
             }
             if(print)
             {
+                Console.WriteLine("Macros for " + m.getName());
                 printNutrition(totalNutrition[0], totalNutrition[1], totalNutrition[2]);
             }
             return (totalNutrition[0], totalNutrition[1], totalNutrition[2]);
@@ -81,10 +82,18 @@ namespace MealCalculator
         private void printNutrition(double p, double f, double c)
         {
             var calories = calculateCalories(p, f, c);
+  
             Console.WriteLine("Total Calories = " + calories.ToString());            
             Console.WriteLine("Total Protein = " + p.ToString());            
             Console.WriteLine("Total Fat = " + f.ToString());            
             Console.WriteLine("Total Carbs = " + c.ToString());
+            if (calories > 1500)
+            {
+                Console.WriteLine($"Percent Protein {((p*4) / calories) * 100}");
+                Console.WriteLine($"Percent Fat {((f * 9) / calories) * 100}");
+                Console.WriteLine($"Percent Carbs {((c * 4) / calories) * 100}");
+            }
+            Console.WriteLine();
         }
     }
 }

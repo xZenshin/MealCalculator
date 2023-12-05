@@ -18,8 +18,8 @@ namespace MealCalculator
             addNutritionItem(new NutritionInfo("Oat Meal", 13.0, 1.1, 58.0));
             addNutritionItem(new NutritionInfo("Javisst", 10.0, 6.5, 43.0));
             addNutritionItem(new NutritionInfo("Protein Powder", 70, 6.5, 8));
-            addNutritionItem(new NutritionInfo("Chicken Breast", 31.0, 3.6, 0.0));
-            addNutritionItem(new NutritionInfo("Ground Beef", 19, 9.7, 0));
+            addNutritionItem(new NutritionInfo("Chicken Breast", 21.0, 3.6, 0.0));
+            addNutritionItem(new NutritionInfo("Ground Beef", 19, 8, 0));
             addNutritionItem(new NutritionInfo("Pasta", 12.0, 1.2, 71.0));
             addNutritionItem(new NutritionInfo("Chopped Tomatoes", 1.2, 0.2, 3.9));
             addNutritionItem(new NutritionInfo("Broccoli", 2.4, 0.4, 7.2));
@@ -28,6 +28,13 @@ namespace MealCalculator
             addNutritionItem(new NutritionInfo("Milk", 3.5, 0.4, 4.7));
             addNutritionItem(new NutritionInfo("Gouda Skiveost", 24.0, 28.0, 0.5));
             addNutritionItem(new NutritionInfo("Chicken Slices", 21.0, 1.5, 2.0));
+            addNutritionItem(new NutritionInfo("Raisins", 3.0, 0.7, 77.0));
+            addNutritionItem(new NutritionInfo("Peanut Butter", 24.5, 48.3, 16.9));
+            addNutritionItem(new NutritionInfo("Whole Grain Bread", 8.0, 3.0, 41.0));
+            addNutritionItem(new NutritionInfo("Skyr Naturel Føtex", 10, 0.2, 3.5));
+            addNutritionItem(new NutritionInfo("Strawberry Jam", 0, 0, 43));
+            addNutritionItem(new NutritionInfo("Peanut Butter Coop", 22, 55, 12));
+            addNutritionItem(new NutritionInfo("Frozen Strawberry", 0, 0, 8));
         }
 
         public void addNutritionItem(NutritionInfo n)
