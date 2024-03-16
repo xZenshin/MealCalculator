@@ -30,6 +30,30 @@ namespace MealCalculator
             var (p,f,c) = nutritionPerServing(ingredient);
             printNutrition(p,f,c);
         }
+
+        public void calculateMealsCappedBy40ProteinPerMeal(Meal[] m)
+        {
+            double[] totalNutrition = new double[3];
+            var cappedProtein = 0.0;
+            foreach (Meal i in m)
+            {
+                var (p, f, c) = calculateMeal(i, true);
+                if (p >= 40)
+                {
+                    cappedProtein += 40;
+                } else
+                {
+                    cappedProtein += p;
+                }
+                totalNutrition[0] = totalNutrition[0] + p;
+                totalNutrition[1] = totalNutrition[1] + f;
+                totalNutrition[2] = totalNutrition[2] + c;
+            }
+            printNutrition(totalNutrition[0], totalNutrition[1], totalNutrition[2]);
+            Console.WriteLine($"Total Protein by only counting 40 = {cappedProtein}");
+
+        }
+
         public void calculateMeals(Meal[] m)
         {
             double[] totalNutrition = new double[3];

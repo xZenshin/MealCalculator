@@ -1,5 +1,6 @@
 ﻿
 using System.Collections;
+using System.Security;
 
 namespace MealCalculator
 {
@@ -10,14 +11,53 @@ namespace MealCalculator
 
             
             Calculator calc = new Calculator();
-            calc.calculateMeals(mealPlan3());
+            calc.calculateMealsCappedBy40ProteinPerMeal(currentMealPlan());
 
             
             
         }
 
 
+        public static Meal[] currentMealPlan()
+        {
+            //Havrergyn
+            var ing1 = new Ingredient("Oat Meal", 60);
+            var ing2 = new Ingredient("Milk", 200);
+            var raisins = new Ingredient("Raisins", 15);
+            Ingredient[] ingArr = { ing1, ing2, raisins };
 
+            //Sandwich
+            var ing3 = new Ingredient("Javisst", 146);
+            var ing4 = new Ingredient("Chicken Slices", 40);
+            var ing5 = new Ingredient("Gouda Skiveost", 46);
+            Ingredient[] ingArr2 = { ing3, ing4, ing5 };
+
+            //Oksekød og ris
+            var ing6 = new Ingredient("Ground Beef", 200);
+            var ing7 = new Ingredient("Jasmine Rice", 150);
+            var ing8 = new Ingredient("Broccoli", 70);
+            var bacon = new Ingredient("Bacon", 50);
+            Ingredient[] ingArr3 = { ing6, ing7, ing8, bacon };
+
+            //Protein skyr
+            var ing9 = new Ingredient("Protein Powder", 35);
+            var skyr = new Ingredient("Skyr Naturel Føtex", 200);
+            Ingredient[] ingArr4 = { ing9, skyr };
+
+            var ing11 = new Ingredient("Peanut Butter Coop", 65);
+            var ing12 = new Ingredient("Whole Grain Bread", 100);
+            var strawberryJam = new Ingredient("Strawberry Jam", 30);
+            Ingredient[] ingArr5 = { ing11, ing12, strawberryJam };
+
+            var meal1 = new Meal(MealType.Breakfast, "Havregryn med mælk", ingArr);
+            var meal2 = new Meal(MealType.Lunch, "Sandwich", ingArr2);
+            var meal3 = new Meal(MealType.Dinner, "Oksekød og ris", ingArr3);
+            var meal4 = new Meal(MealType.Lunch, "Protein skyr", ingArr4);
+            var meal5 = new Meal(MealType.Lunch, "Peanutbutter Sandwich", ingArr5);
+            Meal[] mealArr = { meal1, meal2, meal3, meal4, meal5 };
+
+            return mealArr;
+        }
         public static Meal[] mealPlan1()
         {
             //Havrergyn
@@ -113,7 +153,7 @@ namespace MealCalculator
             var skyr = new Ingredient("Skyr Naturel Føtex", 200);
             Ingredient[] ingArr4 = {ing9,ing10, strawberry, skyr};
 
-            var ing11 = new Ingredient("Peanut Butter Coop", 50);
+            var ing11 = new Ingredient("Peanut Butter Coop", 65);
             var ing12 = new Ingredient("Whole Grain Bread", 100);
             var strawberryJam = new Ingredient("Strawberry Jam", 30);
             Ingredient[] ingArr5 = {ing11,ing12, strawberryJam };
