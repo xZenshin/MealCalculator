@@ -17,7 +17,10 @@ namespace MealCalculator
             
         }
 
-
+        //TODO: Make calculate meal method return actual values, instead of just printing
+        // sucht that can manipulate the return values
+        // Also add protein sources (meat/diary/idk bread) to see quality of protein intake
+        // Also add option to add some optional food to a mealplan
         public static Meal[] currentMealPlan()
         {
             //Havrergyn
